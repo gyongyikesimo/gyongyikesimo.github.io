@@ -1,1 +1,0 @@
-# gyongyikesimo.github.io
