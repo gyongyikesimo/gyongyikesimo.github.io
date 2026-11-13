@@ -1,0 +1,16 @@
+{
+  "monthlyRevenue": {
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    "data": [12000, 15000, 11000, 18000, 22000, 25000]
+  },
+  "monthlyOrders": [240, 310, 280, 350, 420, 480],
+  "newCustomers": [85, 92, 78, 110, 130, 145],
+  "salesByCategory": {
+    "labels": ["Electronics", "Clothing", "Home & Kitchen", "Sports", "Books"],
+    "data": [45000, 32000, 28000, 19000, 12000]
+  },
+  "expenseBreakdown": {
+    "labels": ["Marketing", "Salaries", "Rent", "Utilities", "Software"],
+    "data": [15000, 45000, 12000, 5000, 8000]
+  }
+}

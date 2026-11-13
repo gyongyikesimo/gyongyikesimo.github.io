@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Intelligence Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js library loaded from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Header / page title -->
+    <header>
+        <h1>Business Intelligence Dashboard</h1>
+        <p>Overview of key performance indicators and business metrics</p>
+    </header>
+
+    <!-- Summary KPI cards showing important business metrics -->
+    <section class="kpi-cards">
+        <div class="card">
+            <div class="card-label">Total Revenue</div>
+            <div class="card-value" id="total-revenue">$0</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Total Orders</div>
+            <div class="card-value" id="total-orders">0</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Avg. Order Value</div>
+            <div class="card-value" id="avg-order">$0</div>
+        </div>
+        <div class="card">
+            <div class="card-label">New Customers</div>
+            <div class="card-value" id="new-customers">0</div>
+        </div>
+    </section>
+
+    <!-- Charts section -->
+    <main class="charts-container">
+        <!-- Line chart: Revenue over time -->
+        <section class="chart-card">
+            <h2>Monthly Revenue</h2>
+            <canvas id="lineChart"></canvas>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
