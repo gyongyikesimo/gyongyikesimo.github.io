@@ -49,44 +49,33 @@ function updateKPICards() {
     document.getElementById('new-customers').textContent = newCustomers.toLocaleString();
 }
 
-// Create the Monthly Revenue line chart using the loaded data
-function createCharts() {
-    // --- Line Chart: Monthly Revenue ---
-    const lineCtx = document.getElementById('lineChart').getContext('2d');
-    new Chart(lineCtx, {
-        type: 'line',
-        data: {
-            labels: businessData.monthlyRevenue.labels,
-            datasets: [{
-                label: 'Revenue ($)',
-                data: businessData.monthlyRevenue.data,
-                borderColor: '#2ecc71',
-                backgroundColor: 'rgba(46, 204, 113, 0.2)',
-                borderWidth: 2,
-                fill: true,
-                tension: 0.3
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: 'Monthly Revenue Trend'
-                }
+// Create the Vega-Lite chart using the seattle-weather.csv data file
+async function createCharts() {
+    // Vega-Lite specification for a bar chart of average monthly precipitation
+    const vlSpec = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        description: 'Average monthly precipitation in Seattle.',
+        data: { url: 'data/seattle-weather.csv' },
+        mark: 'bar',
+        encoding: {
+            x: {
+                timeUnit: 'month',
+                field: 'date',
+                type: 'ordinal',
+                title: 'Month'
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Revenue ($)'
-                    }
-                }
+            y: {
+                aggregate: 'mean',
+                field: 'precipitation',
+                type: 'quantitative',
+                title: 'Average Precipitation'
             }
-        }
-    });
+        },
+        title: 'Average Monthly Precipitation in Seattle'
+    };
+
+    // Embed the Vega-Lite chart into the div with id "vis"
+    vegaEmbed('#vis', vlSpec, { actions: false }).catch(console.error);
 }
 
 // Start loading the data when the page loads
