@@ -3,50 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Intelligence Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Vega, Vega-Lite, and Vega-Embed libraries loaded from a CDN -->
+    <title>Seattle Weather</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        #vis {
+            width: 90vw;
+            max-width: 800px;
+            height: 50vh;
+            max-height: 400px;
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Header / page title -->
-    <header>
-        <h1>Business Intelligence Dashboard</h1>
-        <p>Overview of key performance indicators and business metrics</p>
-    </header>
-
-    <!-- Summary KPI cards showing important business metrics -->
-    <section class="kpi-cards">
-        <div class="card">
-            <div class="card-label">Total Revenue</div>
-            <div class="card-value" id="total-revenue">$0</div>
-        </div>
-        <div class="card">
-            <div class="card-label">Total Orders</div>
-            <div class="card-value" id="total-orders">0</div>
-        </div>
-        <div class="card">
-            <div class="card-label">Avg. Order Value</div>
-            <div class="card-value" id="avg-order">$0</div>
-        </div>
-        <div class="card">
-            <div class="card-label">New Customers</div>
-            <div class="card-value" id="new-customers">0</div>
-        </div>
-    </section>
-
-    <!-- Charts section -->
-    <main class="charts-container">
-        <!-- Vega-Lite chart: Average Monthly Precipitation in Seattle -->
-        <section class="chart-card">
-            <h2>Average Monthly Precipitation in Seattle</h2>
-            <div id="vis"></div>
-        </section>
-    </main>
-
-    <script src="js/script.js"></script>
+    <div id="vis"></div>
+    <script>
+        const vlSpec = {
+            $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+            data: { url: 'data/seattle-weather.csv' },
+            mark: 'bar',
+            encoding: {
+                x: {
+                    timeUnit: 'month',
+                    field: 'date',
+                    type: 'ordinal'
+                },
+                y: {
+                    aggregate: 'mean',
+                    field: 'precipitation'
+                }
+            }
+        };
+        vegaEmbed('#vis', vlSpec, { actions: false }).catch(console.error);
+    </script>
 </body>
 </html>
